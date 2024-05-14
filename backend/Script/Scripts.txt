@@ -1,0 +1,85 @@
+crate database dnd;
+
+Create table dnd.Ataques(
+		ID INT AUTO_INCREMENT NOT NULL,
+        NOMBRE VARCHAR(255) DEFAULT NULL,
+        NIVEL INT DEFAULT NULL,
+        TIPO INT DEFAULT NULL,
+        CDSALVACION VARCHAR(255) DEFAULT NULL,
+        DESCRIPCION longtext DEFAULT NULL,
+        VOCAL boolean DEFAULT NULL,
+        SOMATICO boolean DEFAULT NULL,
+        MATERIAL boolean DEFAULT NULL,
+        DURACION VARCHAR(255) DEFAULT NULL,
+        TIEMPODELANZAMIENTO VARCHAR(255) DEFAULT NULL,
+        DAÑO VARCHAR(255) DEFAULT NULL,
+        DAÑO2 VARCHAR(255) DEFAULT NULL,
+        DAÑOXNIVELSUPERIOR VARCHAR(255) DEFAULT NULL,
+        ALCANCE VARCHAR(255) DEFAULT NULL,
+        PRIMARY KEY (`ID`)
+)
+
+
+
+
+CREATE TABLE DND.`criaturas` (
+  `ID` decimal(10,0) NOT NULL,
+  `SUBID` decimal(10,0) NOT NULL,
+  `NOMBRE` varchar(255) DEFAULT NULL,
+  `DIFICULTAD` varchar(10) DEFAULT NULL,
+  `VIDA` decimal(10,0) DEFAULT NULL,
+  `VELOCIDAD` decimal(10,0) DEFAULT NULL,
+  `VELOCIDADNADO` decimal(10,0) DEFAULT NULL,
+  `VELOCIDADVUELO` decimal(10,0) DEFAULT NULL,
+  `ARMADURA` decimal(10,0) DEFAULT NULL,
+  `FUERZA` decimal(10,0) DEFAULT NULL,
+  `DESTREZA` decimal(10,0) DEFAULT NULL,
+  `CONSTITUCION` decimal(10,0) DEFAULT NULL,
+  `INTELIGENCIA` decimal(10,0) DEFAULT NULL,
+  `SABIDURIA` decimal(10,0) DEFAULT NULL,
+  `CARISMA` decimal(10,0) DEFAULT NULL,
+  `XP` decimal(10,0) DEFAULT NULL,
+  `IDATAQUES` varchar(255) DEFAULT NULL,
+  primary key (ID, SUBID)
+) 
+
+alter table dnd.criaturas
+add (Tipo varchar(255) DEFAULT NULL,
+	 Tamaño varchar(255) DEFAULT NULL,
+     Alineamiento varchar(255) DEFAULT NULL
+);
+
+
+insert into dnd.criaturas(ID, SUBID, Nombre, Dificultad, Vida, Velocidad, VelocidadNado, VelocidadVuelo, Armadura, Fuerza, Destreza, Constitucion, Inteligencia, Sabiduria, Carisma, XP, IdAtaques,Tipo,Tamaño,Alineamiento)VALUES
+(1,0,'Goblin','0.25',7,30,0,0,15,8,14,10,10,8,8,50,'4,5','Trasgos','Pequeño','Neutral Malo'),
+(1,1,'Goblin Jefe','1',21,30,0,0,17,10,14,10,10,8,10,200,'4,6','Trasgos','Pequeño','Neutral Malo'),
+(2,0,'Zombie','0.25',22,20,0,0,8,13,6,16,3,6,5,50,'7','Muerto Viviente','Mediano','Neutral Malo'),
+(2,1,'Zombie Ogro','2',85,30,0,0,8,19,6,18,3,6,5,450,'8','Muerto Viviente','grande','Neutral Malo'),
+(2,2,'Zombie Contemplador','5',93,0,0,20,15,10,8,16,3,8,5,1800,'9,10','Muerto Viviente','Grande','Neutral Malo'),
+(3,0,'Slime Gris','0.50',22,10,0,0,8,12,6,16,1,6,2,100,'11','Cieno','Mediano','Neutral'),
+(3,1,'Slime Ocre','2',45,10,0,0,8,15,6,14,2,6,1,450,'11','Cieno','Grande','Neutral'),
+(3,2,'Slime Cubo','2',84,15,0,0,6,14,3,20,1,6,1,450,'11,12','Cieno','Grande','Neutral'),
+(3,3,'Slime Negro','4',85,20,0,0,7,18,5,16,1,6,1,1100,'11','Cieno','Grande','Neutral'),
+(4,0,'Cocatriz','0.50',27,20,0,40,11,6,12,12,2,13,5,100,'13','Monstruoosidad','Pequeño','Neutral'),
+(5,0,'Contemplador','13',180,0,0,20,18,10,14,18,17,15,17,10000,'13,14','Aberracion','Grande','Neutral Malo'),
+(5,1,'Espectador','3',39,0,0,30,14,8,14,14,13,14,11,700,'13,14','Aberracion','Mediano','Neutral'),
+(5,2,'Tirano Sepulcral','14',187,0,0,20,19,10,14,14,19,15,19,11500,'13,14','Aberracion','Grande','Neutral Malo'),
+(6,0,'Balor','19',262,40,0,80,19,26,15,22,20,16,22,22000,'15,16,17','Infernal','Enorme','Caotico Malo'),
+(6,1,'Barlgura','5',68,40,0,0,15,18,15,16,7,14,9,1800,'11,18','Infernal','Grande','Caotico Malo'),
+(6,2,'Chasme','6',84,20,0,60,15,15,15,12,11,14,10,2300,'19','Infernal','Grande','Caotico Malo'),
+(6,3,'Dretch','0,25',18,20,0,0,11,11,11,12,5,8,3,50,'11,20,21','Infernal','Pequeño','Caotico Malo'),
+(6,4,'Glabrezu','9',157,40,0,0,17,20,15,21,19,17,16,5000,'22,23','Infernal','Grande','Caotico Malo'),
+(6,5,'Garistro','17',310,40,0,0,19,25,11,25,6,13,14,18000,'23,24,25','Infernal','Enorme','Caotico Malo'),
+(6,6,'Hezrou','8',136,30,0,0,16,19,17,20,5,12,13,3900,'11,20','Infernal','Grande','Caotico Malo'),
+(6,7,'Mane','0,125',9,20,0,0,9,10,9,13,3,8,4,25,'20','Infernal','Pequeño','Caotico Malo')
+;
+
+insert into dnd.ataques (ID, NOMBRE, NIVEL, TIPO, CDSALVACION, DESCRIPCION, VOCAL, SOMATICO, MATERIAL, DURACION, TIEMPODELANZAMIENTO, DAÑO, DAÑO2, DAÑOXNIVELSUPERIOR, ALCANCE ) values(
+	2,'Hacha',null,1,null,"Pegar con Hacha es como pegar con una daga pero con un mango mas largo",false,false,false,'Instantaneo','1 accion','1d6',null,null,'mele'
+)
+
+
+
+
+
+
