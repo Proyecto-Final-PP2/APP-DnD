@@ -1,17 +1,11 @@
-version: '3.8'
+version: '3'
 
 services:
-  backend:
-    build: ./backend
+  web:
+    build: .
     ports:
-      - "80:80"
-    environment:
-      - ASPNETCORE_URLS=http://+:80
-      - DATABASE_URL=${DATABASE_URL}
-
-  nginx:
-    build: ./nginx
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+      - "5000:5000"
+  
+    volumes:
+      - .:/app
+    restart: always
