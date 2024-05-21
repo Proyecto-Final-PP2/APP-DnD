@@ -39,7 +39,7 @@ Una vez que hayas construido las imágenes de Docker, puedes iniciar la aplicaci
 docker-compose up
 ```
 
-Esto iniciará tanto el backend como el frontend de DungeonPedia. El backend estará disponible en `http://localhost:8080` y el frontend en `http://localhost:3000`.
+Esto iniciará tanto el backend como el frontend de DungeonPedia. El frontend en `http://localhost:3000`.
 
 ## Contribución
 
