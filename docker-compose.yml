@@ -1,11 +1,22 @@
-version: '3'
+version: '3.8'
 
 services:
-  web:
-    build: .
+  backend:
+    build:
+      context: ./backend
     ports:
-      - "5000:5000"
-  
-    volumes:
-      - .:/app
-    restart: always
+      - "5000:8080"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

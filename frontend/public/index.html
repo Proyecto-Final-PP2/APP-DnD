@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="%PUBLIC_URL%/CSS/Principal.css">
+    <title>DungeonPedia</title>
+</head>
+<header>
+    <div class="ContenedorHeader">
+        <div class="Logo">
+            <img src="%PUBLIC_URL%/assets/Imagenes/D20.png" alt="Logo">
+        </div>
+        <div class="Menu">
+            <nav>
+                <ul>
+                    <li><a href="#" class="Inicio">Inicio</a></li>
+                    <li><a href="#" class="Monstruos">Monstruos</a></li>
+                    <li><a href="#" class="Ataques">Ataques</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<body>
+    <div class="ContenedorTabla">
+        <table>
+            <thead>
+                <tr>
+                    <th><span>Nombre</span></th>
+                    <th><span>Dificultad</span></th>
+                    <th><span>Velocidad</span></th>
+                    <th><span>Velocidad Nado</span></th>
+                    <th><span>Velocidad Vuelo</span></th>
+                    <th><span>Tamaño</span></th>
+                    <th><span>Tipo</span></th>
+                    <th><span>Alineamiento</span></th>
+                </tr>
+            </thead>
+            <tbody id="Resultado">
+                <tr><td>Ejemplo</td></tr> <!-- Sample data for testing -->
+            </tbody>
+        </table>
+    </div>
+    <script src="%PUBLIC_URL%/JS/scrollCriaturas.js"></script>
+</body>
+</html>
