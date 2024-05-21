@@ -16,13 +16,13 @@ Sigue estos pasos para configurar y ejecutar la aplicación en tu máquina local
 1. Clona este repositorio en tu máquina local.
 
 ```bash
-git clone https://github.com/tu-usuario/DungeonPedia.git
+git clone https://github.com/Proyecto-Final-PP2/APP-DnD.git
 ```
 
 2. Navega hasta el directorio del proyecto.
 
 ```bash
-cd DungeonPedia
+cd APP-DnD
 ```
 
 3. Construye las imágenes de Docker.
