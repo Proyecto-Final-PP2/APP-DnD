@@ -12,10 +12,22 @@ namespace Modelo.Scripts
     {
         private MySqlConnection conn;
 
-        public ConexionBD() {
-            conn = new MySqlConnection("Server=localhost;database=dnd;user=root;password=123456789");
-        }
+         public ConexionBD() {
+             /*
+             conn = new MySqlConnection("Server=localhost;" +
+                                        "database=dnd;" +
+                                        "user=root;" +
+                                        "password=123456789");
         
+             */
+             conn = new MySqlConnection("Server=bsaosyt8x9cqc68z63bc-mysql.services.clever-cloud.com;" +
+                                        "Port=3306;"+     
+                                        "database=bsaosyt8x9cqc68z63bc;" +
+                                        "user=ubhcshgbi1nfolq2;" +
+                                        "password=Sph0v23HTvo7g9KsXC0C");
+
+ }
+
         
 
         public MySqlConnection AbrirConexion() {
