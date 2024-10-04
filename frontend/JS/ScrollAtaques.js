@@ -1,13 +1,13 @@
 let scroll = 0;
-let Criaturas = '';
-let UltimaCriatura;
+let Ataque = '';
+let UltimaAtaque;
 let Resultado= document.querySelector('#Resultado');
 Resultado.innerHTML= '';
-let CantidadCriaturas =0;
+let CantidadAtaque =0;
 
 
-function ContarCriaturas() {
-    let apiUrl = 'https://localhost:44373/Criatura/GetContarTotalCriaturas';
+function ContarAtaques() {
+    let apiUrl = 'https://localhost:44373/Ataque/GetContarTotalAtaques';
 	try {
 		const respuesta = new XMLHttpRequest;
         respuesta.open('GET',apiUrl,true)
@@ -20,10 +20,9 @@ function ContarCriaturas() {
                 //console.log(datos)   
                 for (let e of datos){
                     console.log("MAX  "+e.max);
-                    CantidadCriaturas =+  Number(e.max);
+                    CantidadAtaques =+  Number(e.max);
                     
                 }
-                
             }            
         }
 	} catch(error){
@@ -37,7 +36,7 @@ let observador = new IntersectionObserver((entradas, observador)=>{
     entradas.forEach(entrada=>{
         if(entrada.isIntersecting){
             console.log("Enrto por entrada")
-            cargarCriaturas();
+            cargarAtaques();
         }
     })},{
     rootMargin:'0px 0px 0px 0px',
@@ -46,13 +45,13 @@ let observador = new IntersectionObserver((entradas, observador)=>{
 
 
 
-const cargarCriaturas = async() => {
+const cargarAtaques = async() => {
     console.log("SCROLL  " + scroll)
     if (scroll ==0) {
-        ContarCriaturas();
+        ContarAtaques();
     }
-    console.log("CantidadCriaturas  " + CantidadCriaturas)
-    let apiUrl = 'https://localhost:44373/Criatura/PostCriaturaXpagina/'+scroll;
+    console.log("CantidadAtaques  " + CantidadAtaques)
+    let apiUrl = 'https://localhost:44373/Ataque/PostAtaqueXpagina/'+scroll;
 	try {
 		const respuesta = new XMLHttpRequest;
         respuesta.open('GET',apiUrl,true)
@@ -64,28 +63,31 @@ const cargarCriaturas = async() => {
                 let datos = JSON.parse(this.responseText);
                 //console.log(datos)
                 for (let e of datos){
-                    Criaturas+=`${e.nombre}`;
+                    Ataques+=`${e.nombre}`;
                     //console.log(e.id)
                     Resultado.innerHTML+= `
                         <tr class="fila">
                                 <td class=Nombre ><span>${e.nombre}</span></td>
-                                <td><span>${e.Tipo}</span></td>
-                                <td><span>${e.Alcance} Pies</span></td>
-                                <td><span>${e.TiempoDeLanzamiento} Pies</span></td>
-                                <td><span>${e.Daño} Pies</span></td>
+                                <td><span>${e.dificultad}</span></td>
+                                <td><span>${e.velocidad} Pies</span></td>
+                                <td><span>${e.velocidadNado} Pies</span></td>
+                                <td><span>${e.velocidadVuelo} Pies</span></td>
+                                <td><span>${e.tamaño}</span></td>
+                                <td><span>${e.tipo}</span></td>
+                                <td><span>${e.alineamiento}</span></td>
                         </tr>
                     `
                 }
-                const CriaturaEnPantalla = document.querySelectorAll('.ContenedorTabla .Nombre');
-                if (CantidadCriaturas > CriaturaEnPantalla.length || scroll ==0) {
-                    if (UltimaCriatura) {
-                        observador.unobserve(UltimaCriatura);
+                const AtaqueEnPantalla = document.querySelectorAll('.ContenedorTabla .Nombre');
+                if (CantidadAtaques > AtaqueEnPantalla.length || scroll ==0) {
+                    if (UltimaAtaque) {
+                        observador.unobserve(UltimaAtaque);
                     }
                 
-                console.log("Criatura en pantalla:  " + CriaturaEnPantalla.length)
-                UltimaCriatura = CriaturaEnPantalla[CriaturaEnPantalla.length -1];
-                console.log("UltimaCriatura  " + UltimaCriatura)
-                observador.observe(UltimaCriatura);
+                console.log("Ataque en pantalla:  " + AtaqueEnPantalla.length)
+                UltimaAtaque = AtaqueEnPantalla[AtaqueEnPantalla.length -1];
+                console.log("UltimaAtaque  " + UltimaAtaque)
+                observador.observe(UltimaAtaque);
                 }
                 scroll++;
             }
@@ -100,4 +102,4 @@ const cargarCriaturas = async() => {
 
 
 
-cargarCriaturas();
+cargarAtaques();

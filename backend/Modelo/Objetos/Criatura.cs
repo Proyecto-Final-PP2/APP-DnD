@@ -24,10 +24,8 @@
         public int? Carisma { get; set; }
         public int? CarismaCompetencia => Carisma / 2 - 5;
         public int? XP { get; set; }
-        public List<int>? IdAtaques { get; set; }
-        public string? Tipo { get; set; }
-        public string? Tamaño { get; set; }
-        public string? Alineamiento { get; set; }
-        public int? MAX { get; set; }
+        public int[]? IdAtaques { get; set; }
+
+
     }
 }

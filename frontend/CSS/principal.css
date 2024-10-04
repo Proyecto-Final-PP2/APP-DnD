@@ -24,6 +24,7 @@ header{
     width:55px;
     height: 55px;
     background-color:#ff6347 ;
+    margin-right: 5px;
 }
 .Menu{
     max-width: 1200px;
@@ -48,25 +49,30 @@ nav >ul>li{
     list-style: none;
     position: relative;
     background-color:#ff6347 ;
+    margin: 0px 4px 0px 4px ;
 }
 
 
 
 nav >ul>li >a {
+
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 14px;
+    padding: 14px 14px 14px 14px;
     color: white;
     text-transform: uppercase;
     transition: all 300ms ease;    
     background-color:#ff6347 ;
+
 }
 nav >ul>li >a:hover{
+    
     transform: scale(1.1);
     background: #d44c34;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 #selected{
@@ -133,16 +139,6 @@ td > span{
     margin: 10px;
     color: aliceblue;
 }
-
-tr:nth-child(10)
-{
-  color:red;
-}
-tr:nth-child(20)
-{
-  color:red;
-}
-
 
 
 

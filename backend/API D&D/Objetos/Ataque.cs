@@ -21,5 +21,7 @@ namespace API_D_D.Objetos
         public string? Daño2 { get; set; }
         public string? DañoXNivelSuperior { get; set; }
         public string? Alcance { get; set; }
+        public int? MAX { get; set; }
     }
 }
+ 

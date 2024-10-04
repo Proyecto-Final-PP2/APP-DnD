@@ -144,9 +144,6 @@ namespace API_D_D.Controllers
                     }
 
 
-
-
-
                 }
             }
             conexion.CerrarConexion();
@@ -154,6 +151,34 @@ namespace API_D_D.Controllers
 
 
         }
+        //Contar todas las criaturas----------------------------------------------------------------------------------------------------------------------------
 
+        [HttpGet("GetContarTotalAtaques")]
+        public IEnumerable<Ataque> get()
+        {
+            ConexionBD conexion = new ConexionBD();
+            string query = "select count(ID) as contador from ataques";
+            MySqlCommand cmd = new MySqlCommand(query, conexion.AbrirConexion());
+
+
+            List<Ataque> ataques= new List<Ataque>();
+            using (var Resultado = cmd.ExecuteReader())
+            {
+                if (Resultado.HasRows)
+                {
+
+                    while (Resultado.Read())
+                    {
+                        int contador = 0;
+                        Validaciones valido = new Validaciones(Resultado);
+                        Ataque ataque = new Ataque();
+                        ataque.MAX = Convert.ToInt32(valido.ValidarValor("contador"));
+                        ataques.Add(ataque);
+                    }
+                }
+            }
+            conexion.CerrarConexion();
+            return ataques;
+        }
     }
 }

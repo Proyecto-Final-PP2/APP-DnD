@@ -77,9 +77,3 @@ insert into dnd.criaturas(ID, SUBID, Nombre, Dificultad, Vida, Velocidad, Veloci
 insert into dnd.ataques (ID, NOMBRE, NIVEL, TIPO, CDSALVACION, DESCRIPCION, VOCAL, SOMATICO, MATERIAL, DURACION, TIEMPODELANZAMIENTO, DAÑO, DAÑO2, DAÑOXNIVELSUPERIOR, ALCANCE ) values(
 	2,'Hacha',null,1,null,"Pegar con Hacha es como pegar con una daga pero con un mango mas largo",false,false,false,'Instantaneo','1 accion','1d6',null,null,'mele'
 )
-
-
-
-
-
-

@@ -368,7 +368,6 @@ namespace API_D_D.Controllers
             {
                 if (Resultado.HasRows)
                 {
-
                     while (Resultado.Read())
                     {
                         int contador = 0;
@@ -377,8 +376,6 @@ namespace API_D_D.Controllers
                         criatura.MAX = Convert.ToInt32(valido.ValidarValor("contador"));
                         criaturas.Add(criatura);
                     }
-
-
                 }
             }
             conexion.CerrarConexion();
