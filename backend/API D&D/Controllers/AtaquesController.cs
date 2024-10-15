@@ -20,7 +20,7 @@ namespace API_D_D.Controllers
         {   
             
             ConexionBD conexion = new ConexionBD();
-            string query = "select * from ataques order by nombre";
+            string query = "select * from Ataques order by nombre";
             MySqlCommand cmd = new MySqlCommand(query, conexion.AbrirConexion());
             List<Ataque> Ataques = new List<Ataque>();
             using (var Resultado = cmd.ExecuteReader())
@@ -67,7 +67,7 @@ namespace API_D_D.Controllers
         public IEnumerable<Ataque> Post(IDAtaque ID)
         {
             ConexionBD conexion = new ConexionBD();
-            string query = "select * from ataques where ID = " + ID.id  + " order by nombre";
+            string query = "select * from Ataques where ID = " + ID.id  + " order by nombre";
             MySqlCommand cmd = new MySqlCommand(query, conexion.AbrirConexion());
             List<Ataque> Ataques = new List<Ataque>();
             using (var Resultado = cmd.ExecuteReader())
@@ -114,7 +114,7 @@ namespace API_D_D.Controllers
         public IEnumerable<Ataque> Post(Nombre Letra)
         {
             ConexionBD conexion = new ConexionBD();
-            string query = "select * from ataques where upper(Nombre) LIKE upper('%" + Letra.Letra + "%')" + " order by nombre";
+            string query = "select * from Ataques where upper(Nombre) LIKE upper('%" + Letra.Letra + "%')" + " order by nombre";
             MySqlCommand cmd = new MySqlCommand(query, conexion.AbrirConexion());
             List<Ataque> Ataques = new List<Ataque>();
             using (var Resultado = cmd.ExecuteReader())
@@ -157,7 +157,7 @@ namespace API_D_D.Controllers
         public IEnumerable<Ataque> get()
         {
             ConexionBD conexion = new ConexionBD();
-            string query = "select count(ID) as contador from ataques";
+            string query = "select count(ID) as contador from Ataques";
             MySqlCommand cmd = new MySqlCommand(query, conexion.AbrirConexion());
 
 
@@ -169,7 +169,6 @@ namespace API_D_D.Controllers
 
                     while (Resultado.Read())
                     {
-                        int contador = 0;
                         Validaciones valido = new Validaciones(Resultado);
                         Ataque ataque = new Ataque();
                         ataque.MAX = Convert.ToInt32(valido.ValidarValor("contador"));
@@ -180,5 +179,71 @@ namespace API_D_D.Controllers
             conexion.CerrarConexion();
             return ataques;
         }
+
+        //Traer ataques X pagina----------------------------------------------------------------------------------------------------------------------------
+
+        [HttpGet("PostAtaqueXpagina/{pagina}")]
+        public IEnumerable<Ataque> get(int pagina)
+        {
+            ConexionBD conexion = new ConexionBD();
+            int cantidad = 10;
+            int inicio;
+            int fin;
+            if (pagina == 0)
+            {
+                inicio = 0;
+                fin = cantidad;
+            }
+            else
+            {
+                inicio = pagina * cantidad;
+            }
+            fin = inicio + cantidad;
+
+
+            string query = "select * from Ataques order by NOMBRE asc LIMIT " + inicio + ", " + fin;
+            MySqlCommand cmd = new MySqlCommand(query, conexion.AbrirConexion());
+
+
+            List<Ataque> ataques = new List<Ataque>();
+            using (var Resultado = cmd.ExecuteReader())
+            {
+                if (Resultado.HasRows)
+                {
+
+                    while (Resultado.Read())
+                    {
+                        Validaciones valido = new Validaciones(Resultado);
+                        Ataque ataque = new Ataque();
+                        ataque.Nombre = valido.ValidarValor("NOMBRE");
+                        switch (valido.ValidarValor("TIPO"))
+                        {
+                            case "1":
+                                ataque.Tipo = "Cortante";
+                                break;
+                            case "2":
+                                ataque.Tipo = "Evocacion";
+                                break;
+                            case "3":
+                                ataque.Tipo = "Punzante";
+                                break;
+                            default:
+                                ataque.Tipo = "Error";
+                                break;
+                        }
+                        ataque.Alcance = valido.ValidarValor("ALCANCE");
+                        ataque.TiempoDeLanzamiento = valido.ValidarValor("TIEMPODELANZAMIENTO");
+                        ataque.Daño = valido.ValidarValor("DAÑO");
+                        
+                        ataques.Add(ataque);
+                    }
+
+
+                }
+            }
+            conexion.CerrarConexion();
+            return ataques;
+        }
+
     }
 }
