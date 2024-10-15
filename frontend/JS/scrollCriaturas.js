@@ -21,7 +21,7 @@ function ContarCriaturas() {
                 for (let e of datos){
                     console.log("MAX  "+e.max);
                     CantidadCriaturas =+  Number(e.max);
-                    
+
                 }
                 
             }            
@@ -68,11 +68,14 @@ const cargarCriaturas = async() => {
                     //console.log(e.id)
                     Resultado.innerHTML+= `
                         <tr class="fila">
-                                <td class=Nombre ><span>${e.nombre}</span></td>
-                                <td><span>${e.Tipo}</span></td>
-                                <td><span>${e.Alcance} Pies</span></td>
-                                <td><span>${e.TiempoDeLanzamiento} Pies</span></td>
-                                <td><span>${e.Daño} Pies</span></td>
+                        <td class=Nombre ><span>${e.nombre}</span></td>
+                                <td><span>${e.dificultad}</span></td>
+                                <td><span>${e.velocidad} Pies</span></td>
+                                <td><span>${e.velocidadNado} Pies</span></td>
+                                <td><span>${e.velocidadVuelo} Pies</span></td>
+                                <td><span>${e.tamaño} </span></td>
+                                <td><span>${e.tipo} </span></td>
+                                <td><span>${e.alineamiento} </span></td>
                         </tr>
                     `
                 }

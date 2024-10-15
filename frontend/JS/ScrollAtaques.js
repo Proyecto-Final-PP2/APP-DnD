@@ -1,9 +1,9 @@
 let scroll = 0;
-let Ataque = '';
+let Ataques = '';
 let UltimaAtaque;
 let Resultado= document.querySelector('#Resultado');
 Resultado.innerHTML= '';
-let CantidadAtaque =0;
+let CantidadAtaques =0;
 
 
 function ContarAtaques() {
@@ -15,13 +15,13 @@ function ContarAtaques() {
 
         respuesta.onreadystatechange = function(){
             if (this.readyState== 4 && this.status ==200) {
-                //console.log(this.responseText)
+                console.log(this.responseText)
                 let datos = JSON.parse(this.responseText);
-                //console.log(datos)   
+                console.log(datos)   
                 for (let e of datos){
                     console.log("MAX  "+e.max);
                     CantidadAtaques =+  Number(e.max);
-                    
+                    console.log("CantidadAtaques  "+CantidadAtaques);
                 }
             }            
         }
@@ -30,7 +30,7 @@ function ContarAtaques() {
 	}
 }
 
-
+console.log("Antes del observador")
 let observador = new IntersectionObserver((entradas, observador)=>{
     console.log("Entradas " +entradas.length);
     entradas.forEach(entrada=>{
@@ -59,22 +59,19 @@ const cargarAtaques = async() => {
 
         respuesta.onreadystatechange = function(){
             if (this.readyState== 4 && this.status ==200) {
-                //console.log(this.responseText)
+                console.log(this.responseText)
                 let datos = JSON.parse(this.responseText);
-                //console.log(datos)
+                console.log(datos)
                 for (let e of datos){
                     Ataques+=`${e.nombre}`;
-                    //console.log(e.id)
+                    console.log(e.nombre)
                     Resultado.innerHTML+= `
                         <tr class="fila">
                                 <td class=Nombre ><span>${e.nombre}</span></td>
-                                <td><span>${e.dificultad}</span></td>
-                                <td><span>${e.velocidad} Pies</span></td>
-                                <td><span>${e.velocidadNado} Pies</span></td>
-                                <td><span>${e.velocidadVuelo} Pies</span></td>
-                                <td><span>${e.tamaño}</span></td>
                                 <td><span>${e.tipo}</span></td>
-                                <td><span>${e.alineamiento}</span></td>
+                                <td><span>${e.alcance} </span></td>
+                                <td><span>${e.tiempoDeLanzamiento} </span></td>
+                                <td><span>${e.daño} Pies</span></td>
                         </tr>
                     `
                 }
